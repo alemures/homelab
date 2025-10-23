@@ -1,7 +1,6 @@
 services:
   nginxpm:
     image: jc21/nginx-proxy-manager:latest
-    container_name: nginxpm
     environment:
       - PUID=1000
       - PGID=1000
@@ -18,7 +17,6 @@ services:
 
   homer:
     image: b4bz/homer
-    container_name: homer
     environment:
       - PORT=7575
     volumes:
@@ -30,9 +28,8 @@ services:
     networks:
       - main
 
-  code-server:
+  code:
     image: lscr.io/linuxserver/code-server:latest
-    container_name: code
     environment:
       - PUID=1000
       - PGID=1000
