@@ -1,0 +1,28 @@
+services:
+  mc:
+    image: itzg/minecraft-server
+    container_name: minecraft
+    tty: true
+    stdin_open: true
+    environment:
+      # https://docker-minecraft-server.readthedocs.io/en/latest/variables/#general-options
+      - UID=1000
+      - GID=1000
+      - TZ=Europe/Madrid
+      # https://docker-minecraft-server.readthedocs.io/en/latest/variables/#server
+      - EULA=TRUE
+      - TYPE=VANILLA
+      - VERSION=1.21.10 
+      - DIFFICULTY=normal
+    volumes:
+      - /portainer/Files/AppData/Config/Minecraft:/data
+    ports:
+      - 25565:25565
+    restart: unless-stopped
+    networks:
+      - main
+
+networks:
+  main:
+    name: main
+    external: true

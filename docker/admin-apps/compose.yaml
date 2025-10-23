@@ -1,0 +1,51 @@
+services:
+  nginxpm:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginxpm
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /portainer/Files/AppData/Config/NginxPM/data:/data
+      - /portainer/Files/AppData/Config/NginxPM/letsencrypt:/etc/letsencrypt
+    ports:
+      - 80:80 # Public HTTP Port
+      - 443:443 # Public HTTPS Port
+      - 81:81 # Admin Web Port
+    restart: unless-stopped
+    networks:
+      - main
+
+  homer:
+    image: b4bz/homer
+    container_name: homer
+    environment:
+      - PORT=7575
+    volumes:
+      - /portainer/Files/AppData/Config/Homer:/www/assets
+    ports:
+      - 7575:7575
+    user: 1000:1000
+    restart: unless-stopped
+    networks:
+      - main
+
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+    volumes:
+      - /portainer/Files/AppData/Config/Code-Server:/config
+    ports:
+      - 8443:8443
+    restart: unless-stopped
+    networks:
+      - main
+
+networks:
+  main:
+    name: main
+    external: true

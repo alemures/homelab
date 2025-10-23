@@ -1,0 +1,163 @@
+services:
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+    volumes:
+      - /portainer/Files/AppData/Config/Prowlarr:/config
+    ports:
+      - 9696:9696
+    restart: unless-stopped
+    networks:
+      - main
+
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+    volumes:
+      - /portainer/Files/AppData/Config/Sonarr:/config
+      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/TV:/tv
+      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Downloads:/downloads
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+    networks:
+      - main
+
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+    volumes:
+      - /portainer/Files/AppData/Config/Radarr:/config
+      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Movies:/movies
+      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Downloads:/downloads
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+    networks:
+      - main
+
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+    volumes:
+      - /portainer/Files/AppData/Config/Bazarr:/config
+      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Movies:/movies
+      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/TV:/tv
+    ports:
+      - 6767:6767
+    restart: unless-stopped
+    networks:
+      - main
+
+  readarr:
+    image: lscr.io/linuxserver/readarr:0.4.18-develop
+    container_name: readarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+    volumes:
+      - /portainer/Files/AppData/Config/Readarr:/config
+      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Books:/books
+      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Downloads:/downloads
+    ports:
+      - 8787:8787
+    restart: unless-stopped
+    networks:
+      - main
+
+  lidarr:
+    image: lscr.io/linuxserver/lidarr:latest
+    container_name: lidarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+    volumes:
+      - /portainer/Files/AppData/Config/Lidarr:/config
+      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Music:/music
+      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Downloads:/downloads
+    ports:
+      - 8686:8686
+    restart: unless-stopped
+    networks:
+      - main
+
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+      - WEBUI_PORT=8080
+      - TORRENTING_PORT=6881
+    volumes:
+      - /portainer/Files/AppData/Config/qBittorrent:/config
+      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Downloads:/downloads
+    ports:
+      - 8080:8080 # Web UI Port
+      - 6881:6881 # Torrenting Port
+      - 6881:6881/udp # Torrenting Port
+    restart: unless-stopped
+    networks:
+      - main
+
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+      - VERSION=docker
+      - PLEX_CLAIM=${PLEX_CLAIM}
+    volumes:
+      - /portainer/Files/AppData/Config/Plex:/config
+      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/TV:/tv
+      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Movies:/movies
+      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Videos:/videos
+      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Photos:/photos
+      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Music:/music
+    ports:
+      - 32400:32400 # Web UI Port
+      - 32469:32469 # Plex DLNA Server Port
+      - 1900:1900/udp # Plex DLNA Server Port
+    restart: unless-stopped
+    networks:
+      - main
+
+  metube:
+    image: ghcr.io/alexta69/metube
+    container_name: metube
+    environment:
+      - UID=1000
+      - GID=1000
+    volumes:
+      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Downloads:/downloads
+    ports:
+      - 8081:8081
+    restart: unless-stopped
+    networks:
+      - main
+
+networks:
+  main:
+    name: main
+    external: true
