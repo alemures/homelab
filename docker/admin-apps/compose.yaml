@@ -34,8 +34,13 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Madrid
+      - SUDO_PASSWORD=${CODE_SERVER_SUDO_PASSWORD}
+      # SSH agent forwarding
+      - SSH_AUTH_SOCK=/ssh-agent
     volumes:
       - /portainer/Files/AppData/Config/Code-Server:/config
+      # SSH agent forwarding
+      - ${SSH_AUTH_SOCK}:/ssh-agent
     ports:
       - 8443:8443
     restart: unless-stopped
