@@ -149,7 +149,7 @@ services:
       - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Photos:/data/photos
       - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Music:/data/music
     ports:
-      - 8096:8096     # Web UI (HTTP)
+      - 8096:8096 # Web UI (HTTP)
       - 7359:7359/udp # Auto-discovery (LAN)
       - 1900:1900/udp # DLNA
     restart: unless-stopped
