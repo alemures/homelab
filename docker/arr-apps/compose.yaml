@@ -112,25 +112,46 @@ services:
     networks:
       - main
 
-  plex:
-    image: lscr.io/linuxserver/plex:latest
+  # plex:
+  #   image: lscr.io/linuxserver/plex:latest
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=Europe/Madrid
+  #     - VERSION=docker
+  #     - PLEX_CLAIM=${PLEX_CLAIM}
+  #   volumes:
+  #     - /portainer/Files/AppData/Config/Plex:/config
+  #     - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/TV:/tv
+  #     - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Movies:/movies
+  #     - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Videos:/videos
+  #     - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Photos:/photos
+  #     - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Music:/music
+  #   ports:
+  #     - 32400:32400 # Web UI Port
+  #     - 32469:32469 # Plex DLNA Server Port
+  #     - 1900:1900/udp # Plex DLNA Server Port
+  #   restart: unless-stopped
+  #   networks:
+  #     - main
+
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Madrid
-      - VERSION=docker
-      - PLEX_CLAIM=${PLEX_CLAIM}
     volumes:
-      - /portainer/Files/AppData/Config/Plex:/config
-      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/TV:/tv
-      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Movies:/movies
-      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Videos:/videos
-      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Photos:/photos
-      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Music:/music
+      - /portainer/Files/AppData/Config/Jellyfin:/config
+      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/TV:/data/tvshows
+      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Movies:/data/movies
+      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Videos:/data/videos
+      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Photos:/data/photos
+      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Music:/data/music
     ports:
-      - 32400:32400 # Web UI Port
-      - 32469:32469 # Plex DLNA Server Port
-      - 1900:1900/udp # Plex DLNA Server Port
+      - 8096:8096     # Web UI (HTTP)
+      - 7359:7359/udp # Auto-discovery (LAN)
+      - 1900:1900/udp # DLNA
     restart: unless-stopped
     networks:
       - main
