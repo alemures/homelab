@@ -5,16 +5,16 @@ services:
     stdin_open: true
     environment:
       # https://docker-minecraft-server.readthedocs.io/en/latest/variables/#general-options
-      - UID=1000
-      - GID=1000
-      - TZ=Europe/Madrid
+      - UID=${USER}
+      - GID=${GROUP}
+      - TZ=${TZ}
       # https://docker-minecraft-server.readthedocs.io/en/latest/variables/#server
       - EULA=TRUE
       - TYPE=VANILLA
       - VERSION=1.21.10
       - DIFFICULTY=normal
     volumes:
-      - /portainer/Files/AppData/Config/Minecraft:/data
+      - ${CONFIG_FOLDER}/Minecraft:/data
     ports:
       - 25565:25565
     restart: unless-stopped

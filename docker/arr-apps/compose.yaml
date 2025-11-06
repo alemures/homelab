@@ -2,11 +2,11 @@ services:
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Madrid
+      - PUID=${USER}
+      - PGID=${GROUP}
+      - TZ=${TZ}
     volumes:
-      - /portainer/Files/AppData/Config/Prowlarr:/config
+      - ${CONFIG_FOLDER}/Prowlarr:/config
     ports:
       - 9696:9696
     restart: unless-stopped
@@ -16,13 +16,13 @@ services:
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Madrid
+      - PUID=${USER}
+      - PGID=${GROUP}
+      - TZ=${TZ}
     volumes:
-      - /portainer/Files/AppData/Config/Sonarr:/config
-      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/TV:/tv
-      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Downloads:/downloads
+      - ${CONFIG_FOLDER}/Sonarr:/config
+      - ${DATA_FOLDER}/TV:/tv
+      - ${DATA_FOLDER}/Downloads:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -32,13 +32,13 @@ services:
   radarr:
     image: lscr.io/linuxserver/radarr:latest
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Madrid
+      - PUID=${USER}
+      - PGID=${GROUP}
+      - TZ=${TZ}
     volumes:
-      - /portainer/Files/AppData/Config/Radarr:/config
-      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Movies:/movies
-      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Downloads:/downloads
+      - ${CONFIG_FOLDER}/Radarr:/config
+      - ${DATA_FOLDER}/Movies:/movies
+      - ${DATA_FOLDER}/Downloads:/downloads
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -48,13 +48,13 @@ services:
   bazarr:
     image: lscr.io/linuxserver/bazarr:latest
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Madrid
+      - PUID=${USER}
+      - PGID=${GROUP}
+      - TZ=${TZ}
     volumes:
-      - /portainer/Files/AppData/Config/Bazarr:/config
-      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Movies:/movies
-      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/TV:/tv
+      - ${CONFIG_FOLDER}/Bazarr:/config
+      - ${DATA_FOLDER}/Movies:/movies
+      - ${DATA_FOLDER}/TV:/tv
     ports:
       - 6767:6767
     restart: unless-stopped
@@ -64,13 +64,13 @@ services:
   readarr:
     image: lscr.io/linuxserver/readarr:0.4.18-develop
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Madrid
+      - PUID=${USER}
+      - PGID=${GROUP}
+      - TZ=${TZ}
     volumes:
-      - /portainer/Files/AppData/Config/Readarr:/config
-      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Books:/books
-      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Downloads:/downloads
+      - ${CONFIG_FOLDER}/Readarr:/config
+      - ${DATA_FOLDER}/Books:/books
+      - ${DATA_FOLDER}/Downloads:/downloads
     ports:
       - 8787:8787
     restart: unless-stopped
@@ -80,13 +80,13 @@ services:
   lidarr:
     image: lscr.io/linuxserver/lidarr:latest
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Madrid
+      - PUID=${USER}
+      - PGID=${GROUP}
+      - TZ=${TZ}
     volumes:
-      - /portainer/Files/AppData/Config/Lidarr:/config
-      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Music:/music
-      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Downloads:/downloads
+      - ${CONFIG_FOLDER}/Lidarr:/config
+      - ${DATA_FOLDER}/Music:/music
+      - ${DATA_FOLDER}/Downloads:/downloads
     ports:
       - 8686:8686
     restart: unless-stopped
@@ -96,14 +96,14 @@ services:
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Madrid
+      - PUID=${USER}
+      - PGID=${GROUP}
+      - TZ=${TZ}
       - WEBUI_PORT=8080
       - TORRENTING_PORT=6881
     volumes:
-      - /portainer/Files/AppData/Config/qBittorrent:/config
-      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Downloads:/downloads
+      - ${CONFIG_FOLDER}/qBittorrent:/config
+      - ${DATA_FOLDER}/Downloads:/downloads
     ports:
       - 8080:8080 # Web UI Port
       - 6881:6881 # Torrenting Port
@@ -115,18 +115,18 @@ services:
   # plex:
   #   image: lscr.io/linuxserver/plex:latest
   #   environment:
-  #     - PUID=1000
-  #     - PGID=1000
-  #     - TZ=Europe/Madrid
+  #     - PUID=${USER}
+  #     - PGID=${GROUP}
+  #     - TZ=${TZ}
   #     - VERSION=docker
   #     - PLEX_CLAIM=${PLEX_CLAIM}
   #   volumes:
-  #     - /portainer/Files/AppData/Config/Plex:/config
-  #     - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/TV:/tv
-  #     - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Movies:/movies
-  #     - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Videos:/videos
-  #     - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Photos:/photos
-  #     - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Music:/music
+  #     - ${CONFIG_FOLDER}/Plex:/config
+  #     - ${DATA_FOLDER}/TV:/tv
+  #     - ${DATA_FOLDER}/Movies:/movies
+  #     - ${DATA_FOLDER}/Videos:/videos
+  #     - ${DATA_FOLDER}/Photos:/photos
+  #     - ${DATA_FOLDER}/Music:/music
   #   ports:
   #     - 32400:32400 # Web UI Port
   #     - 32469:32469 # Plex DLNA Server Port
@@ -138,16 +138,16 @@ services:
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:latest
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Madrid
+      - PUID=${USER}
+      - PGID=${GROUP}
+      - TZ=${TZ}
     volumes:
-      - /portainer/Files/AppData/Config/Jellyfin:/config
-      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/TV:/data/tvshows
-      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Movies:/data/movies
-      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Videos:/data/videos
-      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Photos:/data/photos
-      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Music:/data/music
+      - ${CONFIG_FOLDER}/Jellyfin:/config
+      - ${DATA_FOLDER}/TV:/data/tvshows
+      - ${DATA_FOLDER}/Movies:/data/movies
+      - ${DATA_FOLDER}/Videos:/data/videos
+      - ${DATA_FOLDER}/Photos:/data/photos
+      - ${DATA_FOLDER}/Music:/data/music
     ports:
       - 8096:8096 # Web UI (HTTP)
       - 7359:7359/udp # Auto-discovery (LAN)
@@ -159,10 +159,10 @@ services:
   metube:
     image: ghcr.io/alexta69/metube
     environment:
-      - UID=1000
-      - GID=1000
+      - UID=${USER}
+      - GID=${GROUP}
     volumes:
-      - /srv/dev-disk-by-uuid-c497dd5c-e3cc-48fb-b67c-a6cb0865cf53/Public/Downloads:/downloads
+      - ${DATA_FOLDER}/Downloads:/downloads
     ports:
       - 8081:8081
     restart: unless-stopped
