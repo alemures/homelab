@@ -11,7 +11,7 @@ services:
       # https://docker-minecraft-server.readthedocs.io/en/latest/variables/#server
       - EULA=TRUE
       - TYPE=VANILLA
-      - VERSION=1.21.10
+      - VERSION=${MINECRAFT_VERSION}
       - DIFFICULTY=normal
     volumes:
       - ${CONFIG_FOLDER}/Minecraft:/data
