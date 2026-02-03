@@ -1,0 +1,28 @@
+services:
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    environment:
+      - PUID=${USER}
+      - PGID=${GROUP}
+      - TZ=${TZ}
+      - VERSION=docker
+      - PLEX_CLAIM=${PLEX_CLAIM}
+    volumes:
+      - ${CONFIG_FOLDER}/Plex:/config
+      - ${DATA_FOLDER}/TV:/tv
+      - ${DATA_FOLDER}/Movies:/movies
+      - ${DATA_FOLDER}/Videos:/videos
+      - ${DATA_FOLDER}/Photos:/photos
+      - ${DATA_FOLDER}/Music:/music
+    ports:
+      - 32400:32400 # Web UI Port
+      - 32469:32469 # Plex DLNA Server Port
+      - 1900:1900/udp # Plex DLNA Server Port
+    restart: unless-stopped
+    networks:
+      - main
+
+networks:
+  main:
+    name: main
+    driver: bridge

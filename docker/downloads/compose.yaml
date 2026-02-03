@@ -1,0 +1,37 @@
+services:
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    environment:
+      - PUID=${USER}
+      - PGID=${GROUP}
+      - TZ=${TZ}
+      - WEBUI_PORT=8080
+      - TORRENTING_PORT=6881
+    volumes:
+      - ${CONFIG_FOLDER}/qBittorrent:/config
+      - ${DATA_FOLDER}/Downloads:/downloads
+    ports:
+      - 8080:8080 # Web UI Port
+      - 6881:6881 # Torrenting Port
+      - 6881:6881/udp # Torrenting Port
+    restart: unless-stopped
+    networks:
+      - main
+
+  metube:
+    image: ghcr.io/alexta69/metube
+    environment:
+      - UID=${USER}
+      - GID=${GROUP}
+    volumes:
+      - ${DATA_FOLDER}/Downloads:/downloads
+    ports:
+      - 8081:8081
+    restart: unless-stopped
+    networks:
+      - main
+
+networks:
+  main:
+    name: main
+    driver: bridge

@@ -1,0 +1,26 @@
+services:
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    environment:
+      - PUID=${USER}
+      - PGID=${GROUP}
+      - TZ=${TZ}
+    volumes:
+      - ${CONFIG_FOLDER}/Jellyfin:/config
+      - ${DATA_FOLDER}/TV:/data/tvshows
+      - ${DATA_FOLDER}/Movies:/data/movies
+      - ${DATA_FOLDER}/Videos:/data/videos
+      - ${DATA_FOLDER}/Photos:/data/photos
+      - ${DATA_FOLDER}/Music:/data/music
+    ports:
+      - 8096:8096 # Web UI (HTTP)
+      - 7359:7359/udp # Auto-discovery (LAN)
+      - 1900:1900/udp # DLNA
+    restart: unless-stopped
+    networks:
+      - main
+
+networks:
+  main:
+    name: main
+    driver: bridge
