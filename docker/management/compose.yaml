@@ -1,0 +1,29 @@
+services:
+  homer:
+    image: b4bz/homer
+    environment:
+      - PORT=7575
+    volumes:
+      - ${CONFIG_FOLDER}/Homer:/www/assets
+    ports:
+      - 7575:7575
+    user: ${USER}:${GROUP}
+    restart: unless-stopped
+    networks:
+      - main
+
+  portainer:
+    image: portainer/portainer-ce:lts
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${CONFIG_FOLDER}/Portainer:/data
+    ports:
+      - 9443:9443
+    restart: unless-stopped
+    networks:
+      - main
+
+networks:
+  main:
+    name: main
+    external: true

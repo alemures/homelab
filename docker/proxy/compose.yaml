@@ -1,0 +1,21 @@
+services:
+  nginxpm:
+    image: jc21/nginx-proxy-manager:latest
+    environment:
+      - PUID=${USER}
+      - PGID=${GROUP}
+    volumes:
+      - ${CONFIG_FOLDER}/NginxPM/data:/data
+      - ${CONFIG_FOLDER}/NginxPM/letsencrypt:/etc/letsencrypt
+    ports:
+      - 80:80 # Public HTTP Port
+      - 443:443 # Public HTTPS Port
+      - 81:81 # Admin Web Port
+    restart: unless-stopped
+    networks:
+      - main
+
+networks:
+  main:
+    name: main
+    external: true
