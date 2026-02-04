@@ -5,13 +5,13 @@ services:
       - PUID=${USER}
       - PGID=${GROUP}
       - TZ=${TZ}
-      - SUDO_PASSWORD=${CODE_SERVER_SUDO_PASSWORD}
+      - SUDO_PASSWORD=${CODE_SERVER_SUDO_PASSWORD:?CODE_SERVER_SUDO_PASSWORD is required}
       # SSH agent forwarding
       - SSH_AUTH_SOCK=/ssh-agent
     volumes:
       - ${CONFIG_FOLDER}/Code-Server:/config
       # SSH agent forwarding
-      - ${SSH_AUTH_SOCK}:/ssh-agent
+      - ${SSH_AUTH_SOCK:?SSH_AUTH_SOCK is required}:/ssh-agent
     ports:
       - 8443:8443
     restart: unless-stopped
@@ -24,7 +24,7 @@ services:
       - PUID=${USER}
       - PGID=${GROUP}
       - TZ=${TZ}
-      - SUDO_PASSWORD=${CODE_SERVER_SUDO_PASSWORD}
+      - SUDO_PASSWORD=${CODE_SERVER_SUDO_PASSWORD:?CODE_SERVER_SUDO_PASSWORD is required}
       - DEFAULT_WORKSPACE=/config/workspace
     volumes:
       - ${CONFIG_FOLDER}/Code-Server:/config

@@ -6,7 +6,7 @@ services:
       - PGID=${GROUP}
       - TZ=${TZ}
       - VERSION=docker
-      - PLEX_CLAIM=${PLEX_CLAIM}
+      - PLEX_CLAIM=${PLEX_CLAIM:?PLEX_CLAIM is required}
     volumes:
       - ${CONFIG_FOLDER}/Plex:/config
       - ${DATA_FOLDER}/TV:/tv
