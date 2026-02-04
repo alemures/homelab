@@ -38,4 +38,4 @@ services:
 networks:
   main:
     name: main
-    driver: bridge
+    external: true
