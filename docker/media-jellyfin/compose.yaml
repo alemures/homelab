@@ -2,16 +2,16 @@ services:
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:latest
     environment:
-      - PUID=${USER}
-      - PGID=${GROUP}
-      - TZ=${TZ}
+      - PUID=${HL_USER}
+      - PGID=${HL_GROUP}
+      - TZ=${HL_TZ}
     volumes:
-      - ${CONFIG_FOLDER}/Jellyfin:/config
-      - ${DATA_FOLDER}/TV:/data/tvshows
-      - ${DATA_FOLDER}/Movies:/data/movies
-      - ${DATA_FOLDER}/Videos:/data/videos
-      - ${DATA_FOLDER}/Photos:/data/photos
-      - ${DATA_FOLDER}/Music:/data/music
+      - ${HL_CONFIG_FOLDER}/Jellyfin:/config
+      - ${HL_DATA_FOLDER}/TV:/data/tvshows
+      - ${HL_DATA_FOLDER}/Movies:/data/movies
+      - ${HL_DATA_FOLDER}/Videos:/data/videos
+      - ${HL_DATA_FOLDER}/Photos:/data/photos
+      - ${HL_DATA_FOLDER}/Music:/data/music
     ports:
       - 8096:8096 # Web UI (HTTP)
       - 7359:7359/udp # Auto-discovery (LAN)

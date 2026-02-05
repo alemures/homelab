@@ -2,16 +2,16 @@ services:
   code:
     image: lscr.io/linuxserver/code-server:latest
     environment:
-      - PUID=${USER}
-      - PGID=${GROUP}
-      - TZ=${TZ}
-      - SUDO_PASSWORD=${CODE_SERVER_SUDO_PASSWORD:?CODE_SERVER_SUDO_PASSWORD is required}
+      - PUID=${HL_USER}
+      - PGID=${HL_GROUP}
+      - TZ=${HL_TZ}
+      - SUDO_PASSWORD=${HL_CODE_SERVER_SUDO_PASSWORD:?HL_CODE_SERVER_SUDO_PASSWORD is required}
       # SSH agent forwarding
       - SSH_AUTH_SOCK=/ssh-agent
     volumes:
-      - ${CONFIG_FOLDER}/Code-Server:/config
+      - ${HL_CONFIG_FOLDER}/Code-Server:/config
       # SSH agent forwarding
-      - ${SSH_AUTH_SOCK:?SSH_AUTH_SOCK is required}:/ssh-agent
+      - ${HL_SSH_AUTH_SOCK:?HL_SSH_AUTH_SOCK is required}:/ssh-agent
     ports:
       - 8443:8443
     restart: unless-stopped
@@ -21,14 +21,14 @@ services:
   codeconfigs:
     image: lscr.io/linuxserver/code-server:latest
     environment:
-      - PUID=${USER}
-      - PGID=${GROUP}
-      - TZ=${TZ}
-      - SUDO_PASSWORD=${CODE_SERVER_SUDO_PASSWORD:?CODE_SERVER_SUDO_PASSWORD is required}
+      - PUID=${HL_USER}
+      - PGID=${HL_GROUP}
+      - TZ=${HL_TZ}
+      - SUDO_PASSWORD=${HL_CODE_SERVER_SUDO_PASSWORD:?HL_CODE_SERVER_SUDO_PASSWORD is required}
       - DEFAULT_WORKSPACE=/config/workspace
     volumes:
-      - ${CONFIG_FOLDER}/Code-Server:/config
-      - ${CONFIG_FOLDER}:/config/workspace
+      - ${HL_CONFIG_FOLDER}/Code-Server:/config
+      - ${HL_CONFIG_FOLDER}:/config/workspace
     ports:
       - 8444:8443
     restart: unless-stopped

@@ -42,6 +42,11 @@ for stack in "$ROOT_DIR"/*; do
       cp "$stack/.env.example" "$stack/.env"
       echo "  → Created .env from .env.example"
     fi
+
+    if [ -f ".env.common" ]; then
+      cat ".env.common" >> "$stack/.env"
+      echo "  → Created/Updated .env from .env.common"
+    fi
   fi
 
   if grep -q "=$" "$stack/.env"; then

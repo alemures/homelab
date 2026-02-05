@@ -2,11 +2,11 @@ services:
   nginxpm:
     image: jc21/nginx-proxy-manager:latest
     environment:
-      - PUID=${USER}
-      - PGID=${GROUP}
+      - PUID=${HL_USER}
+      - PGID=${HL_GROUP}
     volumes:
-      - ${CONFIG_FOLDER}/NginxPM/data:/data
-      - ${CONFIG_FOLDER}/NginxPM/letsencrypt:/etc/letsencrypt
+      - ${HL_CONFIG_FOLDER}/NginxPM/data:/data
+      - ${HL_CONFIG_FOLDER}/NginxPM/letsencrypt:/etc/letsencrypt
     ports:
       - 80:80 # Public HTTP Port
       - 443:443 # Public HTTPS Port

@@ -5,16 +5,16 @@ services:
     stdin_open: true
     environment:
       # https://docker-minecraft-server.readthedocs.io/en/latest/variables/#general-options
-      - UID=${USER}
-      - GID=${GROUP}
-      - TZ=${TZ}
+      - UID=${HL_USER}
+      - GID=${HL_GROUP}
+      - TZ=${HL_TZ}
       # https://docker-minecraft-server.readthedocs.io/en/latest/variables/#server
       - EULA=TRUE
       - TYPE=VANILLA
-      - VERSION=${MINECRAFT_VERSION}
+      - VERSION=${HL_MINECRAFT_VERSION}
       - DIFFICULTY=normal
     volumes:
-      - ${CONFIG_FOLDER}/Minecraft:/data
+      - ${HL_CONFIG_FOLDER}/Minecraft:/data
     ports:
       - 25565:25565
     restart: unless-stopped

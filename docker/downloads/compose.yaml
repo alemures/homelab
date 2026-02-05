@@ -2,14 +2,14 @@ services:
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
     environment:
-      - PUID=${USER}
-      - PGID=${GROUP}
-      - TZ=${TZ}
+      - PUID=${HL_USER}
+      - PGID=${HL_GROUP}
+      - TZ=${HL_TZ}
       - WEBUI_PORT=8080
       - TORRENTING_PORT=6881
     volumes:
-      - ${CONFIG_FOLDER}/qBittorrent:/config
-      - ${DATA_FOLDER}/Downloads:/downloads
+      - ${HL_CONFIG_FOLDER}/qBittorrent:/config
+      - ${HL_DATA_FOLDER}/Downloads:/downloads
     ports:
       - 8080:8080 # Web UI Port
       - 6881:6881 # Torrenting Port
@@ -21,10 +21,10 @@ services:
   metube:
     image: ghcr.io/alexta69/metube
     environment:
-      - UID=${USER}
-      - GID=${GROUP}
+      - UID=${HL_USER}
+      - GID=${HL_GROUP}
     volumes:
-      - ${DATA_FOLDER}/Downloads:/downloads
+      - ${HL_DATA_FOLDER}/Downloads:/downloads
     ports:
       - 8081:8081
     restart: unless-stopped

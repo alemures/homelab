@@ -2,11 +2,11 @@ services:
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
     environment:
-      - PUID=${USER}
-      - PGID=${GROUP}
-      - TZ=${TZ}
+      - PUID=${HL_USER}
+      - PGID=${HL_GROUP}
+      - TZ=${HL_TZ}
     volumes:
-      - ${CONFIG_FOLDER}/Prowlarr:/config
+      - ${HL_CONFIG_FOLDER}/Prowlarr:/config
     ports:
       - 9696:9696
     restart: unless-stopped
@@ -16,13 +16,13 @@ services:
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
     environment:
-      - PUID=${USER}
-      - PGID=${GROUP}
-      - TZ=${TZ}
+      - PUID=${HL_USER}
+      - PGID=${HL_GROUP}
+      - TZ=${HL_TZ}
     volumes:
-      - ${CONFIG_FOLDER}/Sonarr:/config
-      - ${DATA_FOLDER}/TV:/tv
-      - ${DATA_FOLDER}/Downloads:/downloads
+      - ${HL_CONFIG_FOLDER}/Sonarr:/config
+      - ${HL_DATA_FOLDER}/TV:/tv
+      - ${HL_DATA_FOLDER}/Downloads:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -32,13 +32,13 @@ services:
   radarr:
     image: lscr.io/linuxserver/radarr:latest
     environment:
-      - PUID=${USER}
-      - PGID=${GROUP}
-      - TZ=${TZ}
+      - PUID=${HL_USER}
+      - PGID=${HL_GROUP}
+      - TZ=${HL_TZ}
     volumes:
-      - ${CONFIG_FOLDER}/Radarr:/config
-      - ${DATA_FOLDER}/Movies:/movies
-      - ${DATA_FOLDER}/Downloads:/downloads
+      - ${HL_CONFIG_FOLDER}/Radarr:/config
+      - ${HL_DATA_FOLDER}/Movies:/movies
+      - ${HL_DATA_FOLDER}/Downloads:/downloads
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -48,13 +48,13 @@ services:
   bazarr:
     image: lscr.io/linuxserver/bazarr:latest
     environment:
-      - PUID=${USER}
-      - PGID=${GROUP}
-      - TZ=${TZ}
+      - PUID=${HL_USER}
+      - PGID=${HL_GROUP}
+      - TZ=${HL_TZ}
     volumes:
-      - ${CONFIG_FOLDER}/Bazarr:/config
-      - ${DATA_FOLDER}/Movies:/movies
-      - ${DATA_FOLDER}/TV:/tv
+      - ${HL_CONFIG_FOLDER}/Bazarr:/config
+      - ${HL_DATA_FOLDER}/Movies:/movies
+      - ${HL_DATA_FOLDER}/TV:/tv
     ports:
       - 6767:6767
     restart: unless-stopped
@@ -64,13 +64,13 @@ services:
   readarr:
     image: lscr.io/linuxserver/readarr:0.4.18-develop
     environment:
-      - PUID=${USER}
-      - PGID=${GROUP}
-      - TZ=${TZ}
+      - PUID=${HL_USER}
+      - PGID=${HL_GROUP}
+      - TZ=${HL_TZ}
     volumes:
-      - ${CONFIG_FOLDER}/Readarr:/config
-      - ${DATA_FOLDER}/Books:/books
-      - ${DATA_FOLDER}/Downloads:/downloads
+      - ${HL_CONFIG_FOLDER}/Readarr:/config
+      - ${HL_DATA_FOLDER}/Books:/books
+      - ${HL_DATA_FOLDER}/Downloads:/downloads
     ports:
       - 8787:8787
     restart: unless-stopped
@@ -80,13 +80,13 @@ services:
   lidarr:
     image: lscr.io/linuxserver/lidarr:latest
     environment:
-      - PUID=${USER}
-      - PGID=${GROUP}
-      - TZ=${TZ}
+      - PUID=${HL_USER}
+      - PGID=${HL_GROUP}
+      - TZ=${HL_TZ}
     volumes:
-      - ${CONFIG_FOLDER}/Lidarr:/config
-      - ${DATA_FOLDER}/Music:/music
-      - ${DATA_FOLDER}/Downloads:/downloads
+      - ${HL_CONFIG_FOLDER}/Lidarr:/config
+      - ${HL_DATA_FOLDER}/Music:/music
+      - ${HL_DATA_FOLDER}/Downloads:/downloads
     ports:
       - 8686:8686
     restart: unless-stopped
