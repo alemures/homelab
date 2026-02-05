@@ -25,8 +25,9 @@ is_ignored() {
 
 for stack in "$ROOT_DIR"/*; do
   stack_name="$(basename "$stack")"
+  compose_file="$stack/compose.yaml"
 
-  [ -f "$stack/compose.yaml" ] || continue
+  [ -f "$compose_file" ] || continue
 
   # If args exist, they override everything
   if [ ${#SELECTED_STACKS[@]} -gt 0 ]; then
@@ -55,8 +56,11 @@ for stack in "$ROOT_DIR"/*; do
     exit 1
   fi
 
-  (
-    cd "$stack"
-    docker compose $ACTION -d
-  )
+  # Set dynamic flags
+  flags=""
+  [[ "$ACTION" == "up" ]] && flags="-d"
+
+  # Execute
+  echo "  🚀 Executing: docker compose $ACTION..."
+  docker compose -f "$compose_file" "$ACTION" $flags
 done
