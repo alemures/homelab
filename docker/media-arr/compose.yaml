@@ -6,7 +6,7 @@ services:
       - PGID=${HL_GROUP}
       - TZ=${HL_TZ}
     volumes:
-      - ${HL_CONFIG_FOLDER}/Prowlarr:/config
+      - ${HL_CONFIG_FOLDER}/prowlarr:/config
     ports:
       - 9696:9696
     restart: unless-stopped
@@ -20,9 +20,9 @@ services:
       - PGID=${HL_GROUP}
       - TZ=${HL_TZ}
     volumes:
-      - ${HL_CONFIG_FOLDER}/Sonarr:/config
-      - ${HL_DATA_FOLDER}/TV:/tv
-      - ${HL_DATA_FOLDER}/Downloads:/downloads
+      - ${HL_CONFIG_FOLDER}/sonarr:/config
+      - ${HL_DATA_FOLDER}/tv:/tv
+      - ${HL_DATA_FOLDER}/downloads:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -36,9 +36,9 @@ services:
       - PGID=${HL_GROUP}
       - TZ=${HL_TZ}
     volumes:
-      - ${HL_CONFIG_FOLDER}/Radarr:/config
-      - ${HL_DATA_FOLDER}/Movies:/movies
-      - ${HL_DATA_FOLDER}/Downloads:/downloads
+      - ${HL_CONFIG_FOLDER}/radarr:/config
+      - ${HL_DATA_FOLDER}/movies:/movies
+      - ${HL_DATA_FOLDER}/downloads:/downloads
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -52,9 +52,9 @@ services:
       - PGID=${HL_GROUP}
       - TZ=${HL_TZ}
     volumes:
-      - ${HL_CONFIG_FOLDER}/Bazarr:/config
-      - ${HL_DATA_FOLDER}/Movies:/movies
-      - ${HL_DATA_FOLDER}/TV:/tv
+      - ${HL_CONFIG_FOLDER}/bazarr:/config
+      - ${HL_DATA_FOLDER}/movies:/movies
+      - ${HL_DATA_FOLDER}/tv:/tv
     ports:
       - 6767:6767
     restart: unless-stopped
@@ -68,9 +68,9 @@ services:
       - PGID=${HL_GROUP}
       - TZ=${HL_TZ}
     volumes:
-      - ${HL_CONFIG_FOLDER}/Readarr:/config
-      - ${HL_DATA_FOLDER}/Books:/books
-      - ${HL_DATA_FOLDER}/Downloads:/downloads
+      - ${HL_CONFIG_FOLDER}/readarr:/config
+      - ${HL_DATA_FOLDER}/books:/books
+      - ${HL_DATA_FOLDER}/downloads:/downloads
     ports:
       - 8787:8787
     restart: unless-stopped
@@ -84,9 +84,9 @@ services:
       - PGID=${HL_GROUP}
       - TZ=${HL_TZ}
     volumes:
-      - ${HL_CONFIG_FOLDER}/Lidarr:/config
-      - ${HL_DATA_FOLDER}/Music:/music
-      - ${HL_DATA_FOLDER}/Downloads:/downloads
+      - ${HL_CONFIG_FOLDER}/lidarr:/config
+      - ${HL_DATA_FOLDER}/music:/music
+      - ${HL_DATA_FOLDER}/downloads:/downloads
     ports:
       - 8686:8686
     restart: unless-stopped

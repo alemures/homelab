@@ -14,7 +14,7 @@ services:
       - VERSION=${HL_MINECRAFT_VERSION}
       - DIFFICULTY=normal
     volumes:
-      - ${HL_CONFIG_FOLDER}/Minecraft:/data
+      - ${HL_CONFIG_FOLDER}/minecraft:/data
     ports:
       - 25565:25565
     restart: unless-stopped

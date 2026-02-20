@@ -4,7 +4,7 @@ services:
     environment:
       - PORT=7575
     volumes:
-      - ${HL_CONFIG_FOLDER}/Homer:/www/assets
+      - ${HL_CONFIG_FOLDER}/homer:/www/assets
     ports:
       - 7575:7575
     user: ${HL_USER}:${HL_GROUP}
@@ -16,7 +16,7 @@ services:
     image: portainer/portainer-ce:lts
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${HL_CONFIG_FOLDER}/Portainer:/data
+      - ${HL_CONFIG_FOLDER}/portainer:/data
     ports:
       - 9443:9443
     restart: unless-stopped

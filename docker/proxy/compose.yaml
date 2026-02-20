@@ -5,8 +5,8 @@ services:
       - PUID=${HL_USER}
       - PGID=${HL_GROUP}
     volumes:
-      - ${HL_CONFIG_FOLDER}/NginxPM/data:/data
-      - ${HL_CONFIG_FOLDER}/NginxPM/letsencrypt:/etc/letsencrypt
+      - ${HL_CONFIG_FOLDER}/nginxpm/data:/data
+      - ${HL_CONFIG_FOLDER}/nginxpm/letsencrypt:/etc/letsencrypt
     ports:
       - 80:80 # Public HTTP Port
       - 443:443 # Public HTTPS Port

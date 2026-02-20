@@ -6,12 +6,12 @@ services:
       - PGID=${HL_GROUP}
       - TZ=${HL_TZ}
     volumes:
-      - ${HL_CONFIG_FOLDER}/Jellyfin:/config
-      - ${HL_DATA_FOLDER}/TV:/data/tvshows
-      - ${HL_DATA_FOLDER}/Movies:/data/movies
-      - ${HL_DATA_FOLDER}/Videos:/data/videos
-      - ${HL_DATA_FOLDER}/Photos:/data/photos
-      - ${HL_DATA_FOLDER}/Music:/data/music
+      - ${HL_CONFIG_FOLDER}/jellyfin:/config
+      - ${HL_DATA_FOLDER}/tv:/data/tvshows
+      - ${HL_DATA_FOLDER}/movies:/data/movies
+      - ${HL_DATA_FOLDER}/videos:/data/videos
+      - ${HL_DATA_FOLDER}/photos:/data/photos
+      - ${HL_DATA_FOLDER}/music:/data/music
     ports:
       - 8096:8096 # Web UI (HTTP)
       - 7359:7359/udp # Auto-discovery (LAN)

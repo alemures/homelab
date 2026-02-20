@@ -8,8 +8,8 @@ services:
       - WEBUI_PORT=8080
       - TORRENTING_PORT=6881
     volumes:
-      - ${HL_CONFIG_FOLDER}/qBittorrent:/config
-      - ${HL_DATA_FOLDER}/Downloads:/downloads
+      - ${HL_CONFIG_FOLDER}/qbittorrent:/config
+      - ${HL_DATA_FOLDER}/downloads:/downloads
     ports:
       - 8080:8080 # Web UI Port
       - 6881:6881 # Torrenting Port
@@ -24,7 +24,7 @@ services:
       - UID=${HL_USER}
       - GID=${HL_GROUP}
     volumes:
-      - ${HL_DATA_FOLDER}/Downloads:/downloads
+      - ${HL_DATA_FOLDER}/downloads:/downloads
     ports:
       - 8081:8081
     restart: unless-stopped

@@ -9,7 +9,7 @@ services:
       # SSH agent forwarding
       - SSH_AUTH_SOCK=/ssh-agent
     volumes:
-      - ${HL_CONFIG_FOLDER}/Code-Server:/config
+      - ${HL_CONFIG_FOLDER}/code:/config
       # SSH agent forwarding
       - ${HL_SSH_AUTH_SOCK:?HL_SSH_AUTH_SOCK is required}:/ssh-agent
     ports:
@@ -27,7 +27,7 @@ services:
       - SUDO_PASSWORD=${HL_CODE_SERVER_SUDO_PASSWORD:?HL_CODE_SERVER_SUDO_PASSWORD is required}
       - DEFAULT_WORKSPACE=/config/workspace
     volumes:
-      - ${HL_CONFIG_FOLDER}/Code-Server:/config
+      - ${HL_CONFIG_FOLDER}/code:/config
       - ${HL_CONFIG_FOLDER}:/config/workspace
     ports:
       - 8444:8443

@@ -8,12 +8,12 @@ services:
       - VERSION=docker
       - PLEX_CLAIM=${HL_PLEX_CLAIM:?HL_PLEX_CLAIM is required}
     volumes:
-      - ${HL_CONFIG_FOLDER}/Plex:/config
-      - ${HL_DATA_FOLDER}/TV:/tv
-      - ${HL_DATA_FOLDER}/Movies:/movies
-      - ${HL_DATA_FOLDER}/Videos:/videos
-      - ${HL_DATA_FOLDER}/Photos:/photos
-      - ${HL_DATA_FOLDER}/Music:/music
+      - ${HL_CONFIG_FOLDER}/plex:/config
+      - ${HL_DATA_FOLDER}/tv:/tv
+      - ${HL_DATA_FOLDER}/movies:/movies
+      - ${HL_DATA_FOLDER}/videos:/videos
+      - ${HL_DATA_FOLDER}/photos:/photos
+      - ${HL_DATA_FOLDER}/music:/music
     ports:
       - 32400:32400 # Web UI Port
       - 32469:32469 # Plex DLNA Server Port
