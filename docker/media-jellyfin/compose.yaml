@@ -7,11 +7,7 @@ services:
       - TZ=${HL_TZ}
     volumes:
       - ${HL_CONFIG_FOLDER}/jellyfin:/config
-      - ${HL_DATA_FOLDER}/tv:/data/tvshows
-      - ${HL_DATA_FOLDER}/movies:/data/movies
-      - ${HL_DATA_FOLDER}/videos:/data/videos
-      - ${HL_DATA_FOLDER}/photos:/data/photos
-      - ${HL_DATA_FOLDER}/music:/data/music
+      - ${HL_DATA_FOLDER}/media:/data/media
     ports:
       - 8096:8096 # Web UI (HTTP)
       - 7359:7359/udp # Auto-discovery (LAN)

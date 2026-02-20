@@ -21,8 +21,7 @@ services:
       - TZ=${HL_TZ}
     volumes:
       - ${HL_CONFIG_FOLDER}/sonarr:/config
-      - ${HL_DATA_FOLDER}/tv:/tv
-      - ${HL_DATA_FOLDER}/downloads:/downloads
+      - ${HL_DATA_FOLDER}:/data
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -37,8 +36,7 @@ services:
       - TZ=${HL_TZ}
     volumes:
       - ${HL_CONFIG_FOLDER}/radarr:/config
-      - ${HL_DATA_FOLDER}/movies:/movies
-      - ${HL_DATA_FOLDER}/downloads:/downloads
+      - ${HL_DATA_FOLDER}:/data
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -53,8 +51,7 @@ services:
       - TZ=${HL_TZ}
     volumes:
       - ${HL_CONFIG_FOLDER}/bazarr:/config
-      - ${HL_DATA_FOLDER}/movies:/movies
-      - ${HL_DATA_FOLDER}/tv:/tv
+      - ${HL_DATA_FOLDER}/media:/data/media
     ports:
       - 6767:6767
     restart: unless-stopped
@@ -69,8 +66,7 @@ services:
       - TZ=${HL_TZ}
     volumes:
       - ${HL_CONFIG_FOLDER}/readarr:/config
-      - ${HL_DATA_FOLDER}/books:/books
-      - ${HL_DATA_FOLDER}/downloads:/downloads
+      - ${HL_DATA_FOLDER}:/data
     ports:
       - 8787:8787
     restart: unless-stopped
@@ -85,8 +81,7 @@ services:
       - TZ=${HL_TZ}
     volumes:
       - ${HL_CONFIG_FOLDER}/lidarr:/config
-      - ${HL_DATA_FOLDER}/music:/music
-      - ${HL_DATA_FOLDER}/downloads:/downloads
+      - ${HL_DATA_FOLDER}:/data
     ports:
       - 8686:8686
     restart: unless-stopped
