@@ -9,7 +9,7 @@ services:
       - TORRENTING_PORT=6881
     volumes:
       - ${HL_CONFIG_FOLDER}/qbittorrent:/config
-      - ${HL_DATA_FOLDER}/downloads:/downloads
+      - ${HL_DATA_FOLDER}/downloads:/data/downloads
     ports:
       - 8080:8080 # Web UI Port
       - 6881:6881 # Torrenting Port
