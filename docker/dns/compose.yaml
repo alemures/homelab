@@ -1,0 +1,22 @@
+services:
+  adguardhome:
+    image: adguard/adguardhome:latest
+    volumes:
+      - ${HL_CONFIG_FOLDER}/adguardhome/work:/opt/adguardhome/work
+      - ${HL_CONFIG_FOLDER}/adguardhome/conf:/opt/adguardhome/conf
+    ports:
+      # Servidor DNS "plain"
+      - 53:53
+      - 53:53/udp
+      # Wizard inicial de AdGuard Home
+      - 3000:3000
+      # Panel de administración (HTTP)
+      - 8083:80
+    restart: unless-stopped
+    networks:
+      - main
+
+networks:
+  main:
+    name: main
+    external: true
