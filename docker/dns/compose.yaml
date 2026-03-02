@@ -1,6 +1,8 @@
 services:
   adguardhome:
     image: adguard/adguardhome:latest
+    environment:
+      - TZ=${HL_TZ}
     volumes:
       - ${HL_CONFIG_FOLDER}/adguardhome/work:/opt/adguardhome/work
       - ${HL_CONFIG_FOLDER}/adguardhome/conf:/opt/adguardhome/conf
