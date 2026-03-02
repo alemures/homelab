@@ -13,12 +13,6 @@ services:
       # Wizard inicial de AdGuard Home
       - 3000:3000
       # Panel de administración (HTTP)
-      - 8083:80
+      - 8083:8083
     restart: unless-stopped
-    networks:
-      - main
-
-networks:
-  main:
-    name: main
-    external: true
+    network_mode: host
