@@ -18,9 +18,9 @@ services:
     volumes:
       - romm_resources:/romm/resources # Resources fetched from IGDB (covers, screenshots, etc.)
       - romm_redis_data:/redis-data # Cached data for background tasks
-      - ${HL_CONFIG_FOLDER}/romm/library:/romm/library # Your game library. Check https://docs.romm.app/latest/Getting-Started/Folder-Structure/ for more details.
-      - ${HL_CONFIG_FOLDER}/romm/assets:/romm/assets # Uploaded saves, states, etc.
-      - ${HL_CONFIG_FOLDER}/romm/config:/romm/config # (Optional) Path where config.yml is stored
+      - ${HL_DATA_FOLDER}/media/games/romm/library:/romm/library # Your game library. Check https://docs.romm.app/latest/Getting-Started/Folder-Structure/ for more details.
+      - ${HL_DATA_FOLDER}/media/games/romm/assets:/romm/assets # Uploaded saves, states, etc.
+      - ${HL_CONFIG_FOLDER}/romm:/romm/config # (Optional) Path where config.yml is stored
     ports:
       - 8084:8080
     restart: unless-stopped
