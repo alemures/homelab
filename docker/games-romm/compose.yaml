@@ -1,6 +1,7 @@
 services:
   romm:
     image: rommapp/romm:latest
+    user: ${HL_USER}:${HL_GROUP}
     environment:
       - TZ=${HL_TZ}
       - DB_HOST=romm-db
