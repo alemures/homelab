@@ -1,9 +1,8 @@
 services:
   romm:
     image: rommapp/romm:latest
+    user: ${HL_USER}:${HL_GROUP}
     environment:
-      - PUID=${HL_USER}
-      - PGID=${HL_GROUP}
       - TZ=${HL_TZ}
       - DB_HOST=romm-db
       - DB_NAME=romm
@@ -11,9 +10,9 @@ services:
       - DB_PASSWD=${HL_MARIADB_PASSWORD}
       - ROMM_AUTH_SECRET_KEY=${HL_ROMM_AUTH_SECRET_KEY}
       # https://docs.romm.app/latest/Getting-Started/Metadata-Providers
-      - HASHEOUS_API_ENABLED=true
       - IGDB_CLIENT_ID=${HL_IGDB_CLIENT_ID}
       - IGDB_CLIENT_SECRET=${HL_IGDB_CLIENT_SECRET}
+      - HASHEOUS_API_ENABLED=true
     volumes:
       - romm_resources:/romm/resources # Resources fetched from IGDB (covers, screenshots, etc.)
       - romm_redis_data:/redis-data # Cached data for background tasks
