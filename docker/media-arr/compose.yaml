@@ -88,6 +88,20 @@ services:
     networks:
       - main
 
+  questarr:
+    image: ghcr.io/doezer/questarr:latest
+    environment:
+      - PUID=${HL_USER}
+      - PGID=${HL_GROUP}
+      - SQLITE_DB_PATH=/app/data/sqlite.db
+    volumes:
+      - ${HL_CONFIG_FOLDER}/questarr:/app/data
+    ports:
+      - 5000:5000
+    restart: unless-stopped
+    networks:
+      - main
+
 networks:
   main:
     name: main
