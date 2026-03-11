@@ -1,4 +1,34 @@
 services:
+  gluetun-prowlarr:
+    image: qmcgaw/gluetun:latest
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - VPN_SERVICE_PROVIDER=protonvpn
+      - VPN_TYPE=wireguard
+      # Proton credentials
+      - WIREGUARD_PRIVATE_KEY=${HL_PROTON_WG_PRIVATE_KEY}
+      - WIREGUARD_ADDRESSES=${HL_PROTON_WG_ADDRESS}
+      # Free tier servers
+      - SERVER_COUNTRIES=Netherlands
+      # Security
+      - FIREWALL=on
+      - DOT=on
+      - BLOCK_MALICIOUS=on
+      - BLOCK_SURVEILLANCE=on
+      - FIREWALL_OUTBOUND_SUBNETS=192.168.0.0/24
+      # Common
+      - TZ=${HL_TZ}
+    volumes:
+      - ${HL_CONFIG_FOLDER}/gluetun-prowlarr:/gluetun
+    ports:
+      - 9696:9696
+    restart: unless-stopped
+
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
     environment:
@@ -7,11 +37,10 @@ services:
       - TZ=${HL_TZ}
     volumes:
       - ${HL_CONFIG_FOLDER}/prowlarr:/config
-    ports:
-      - 9696:9696
     restart: unless-stopped
-    networks:
-      - main
+    depends_on:
+      - gluetun-prowlarr
+    network_mode: service:gluetun-prowlarr
 
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
