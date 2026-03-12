@@ -45,6 +45,8 @@ services:
     environment:
       - TZ=${HL_TZ}
     restart: unless-stopped
+    networks:
+      - main
 
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
