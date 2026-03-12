@@ -12,14 +12,10 @@ services:
       - VPN_TYPE=wireguard
       # Proton credentials
       - WIREGUARD_PRIVATE_KEY=${HL_PROTON_WG_PRIVATE_KEY}
-      - WIREGUARD_ADDRESSES=${HL_PROTON_WG_ADDRESS}
       # Free tier servers
       - SERVER_COUNTRIES=Netherlands
+      - FREE_ONLY=on
       # Security
-      - FIREWALL=on
-      - DOT=on
-      - BLOCK_MALICIOUS=on
-      - BLOCK_SURVEILLANCE=on
       - FIREWALL_OUTBOUND_SUBNETS=192.168.0.0/24
       # Common
       - TZ=${HL_TZ}
