@@ -40,6 +40,12 @@ services:
       - gluetun-prowlarr
     network_mode: service:gluetun-prowlarr
 
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    environment:
+      - TZ=${HL_TZ}
+    restart: unless-stopped
+
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
     environment:
