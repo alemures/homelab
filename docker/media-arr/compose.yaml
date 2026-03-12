@@ -28,6 +28,8 @@ services:
     ports:
       - 9696:9696
     restart: unless-stopped
+    networks:
+      - main
 
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
